@@ -5,7 +5,7 @@ import (
 	"io"
 	"sort"
 
-	"github.com/yukithm/json2csv/jsonpointer"
+	"github.com/ethfoo/json2csv/jsonpointer"
 )
 
 // KeyStyle represents the specific style of the key.

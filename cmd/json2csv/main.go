@@ -7,8 +7,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/yukithm/json2csv"
-	"github.com/yukithm/json2csv/jsonpointer"
+	"github.com/ethfoo/json2csv"
+	"github.com/ethfoo/json2csv/jsonpointer"
 
 	"github.com/urfave/cli"
 )
