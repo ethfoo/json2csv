@@ -26,6 +26,7 @@ var headerStyleTable = map[string]json2csv.KeyStyle{
 	"slash":       json2csv.SlashStyle,
 	"dot":         json2csv.DotNotationStyle,
 	"dot-bracket": json2csv.DotBracketStyle,
+	"none": json2csv.None,
 }
 
 func main() {

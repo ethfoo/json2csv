@@ -24,6 +24,9 @@ const (
 
 	// "foo.bar[0].baz"
 	DotBracketStyle
+
+	// None
+	None
 )
 
 // CSVWriter writes CSV data.
@@ -38,6 +41,14 @@ func NewCSVWriter(w io.Writer) *CSVWriter {
 	return &CSVWriter{
 		csv.NewWriter(w),
 		JSONPointerStyle,
+		false,
+	}
+}
+
+func NewCSVWriterWithHeaderStyle(w io.Writer, style KeyStyle) *CSVWriter {
+	return &CSVWriter{
+		csv.NewWriter(w),
+		style,
 		false,
 	}
 }
@@ -60,8 +71,10 @@ func (w *CSVWriter) writeCSV(results []KeyValue) error {
 	keys := pts.Strings()
 	header := w.getHeader(pts)
 
-	if err := w.Write(header); err != nil {
-		return err
+	if header != nil {
+		if err := w.Write(header); err != nil {
+			return err
+		}
 	}
 
 	for _, result := range results {
@@ -131,6 +144,8 @@ func (w *CSVWriter) getHeader(pointers pointers) []string {
 		return pointers.DotNotations(false)
 	case DotBracketStyle:
 		return pointers.DotNotations(true)
+	case None:
+		return nil
 	default:
 		return pointers.Strings()
 	}
